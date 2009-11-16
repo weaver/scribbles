@@ -1,0 +1,15 @@
+===========
+ Scribbles
+===========
+
+csharp
+------
+
+Basic C# programs.
+
+1. hello.cs -- Hello World
+
+2. cat.cs -- A simplified implementation of the `cat' unix utility
+
+3. curl.cs -- copy a URL to standard output
+
