@@ -15,7 +15,7 @@ using System;
 using System.IO;
 
 class Cat
-{
+{   
 	const int bufferSize = 1024;
 	private static char[] buffer = new char[bufferSize];
 

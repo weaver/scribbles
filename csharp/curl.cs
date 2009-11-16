@@ -1,11 +1,11 @@
 // curl -- copy a URL to standard output
 
 // Concepts:
-//  1. The System.Net namespace contains implementations for many
-//     standard network protocols.
-//  2. A request for a URI can be created using `WebRequest.Create()'.
-//  3. Response headers are in something like a dictionary.
-//  4. Response data can be read from a Stream.
+//	1. The System.Net namespace contains implementations for many
+//	   standard network protocols.
+//	2. A request for a URI can be created using `WebRequest.Create()'.
+//	3. Response headers are in something like a dictionary.
+//	4. Response data can be read from a Stream.
 
 using System;
 using System.IO;
@@ -22,7 +22,7 @@ class cURL
 			usage();
 			return 1;
 		}
-
+	
 		using(HttpWebResponse response = get(argv[0])) {
 			write(response);
 		}
