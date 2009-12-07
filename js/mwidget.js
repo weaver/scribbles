@@ -23,7 +23,7 @@
              // There is a base class; link proto and base together
              // like this: (instance -> proto -> base).
              function chain() { $.extend(this, proto); };
-             chain.prototype = base;
+             chain.prototype = $.isFunction(base) ? base.prototype : base;
          }
 
          // Pop `__new__' out of the class definition.  Use it as
@@ -62,43 +62,73 @@
          // Create a jQuery method for this WidgetType; dispatch to
          // `create()' or `call()'.
          method: function() {
-             var meta = this,
-                 wtype = this.widget();
+             var widget = this.widget(),
+                 cls = widget.prototype;;
 
-             return function dispatch(options) {
+             return function dispatch(method) {
                  // usage: $(...).mwidget('method', arg ...);
-                 if (typeof options == 'string') {
-                     return meta.call(this, options, Array.prototype.slice.call(arguments, 1));
+                 if (typeof method == 'string') {
+                     return cls.call(this, method, Array.prototype.slice.call(arguments, 1));
                  }
 
                  // usage: $(...).mwidget({ ... });
-                 options = options || {};
+                 var options = method || {};
                  return this.each(function() {
-                     meta.call(meta.create(wtype, $(this), options), '__init__', []);
+                     var obj = cls.create(widget, $(this), options);
+                     obj && cls.call(obj, '__init__', []);
                  });
              };
          },
 
          // Handle widget construction.
-         create: function(widget, elem, proto) {
-             return elem.data(this.name, new widget(elem, proto));
+         create: function(type, elem, proto) {
+             var data = elem.data(this.name);
+             return !data && elem.data(this.name, new type(elem, proto));
          },
 
          // Handle widget instance methods.
-         call: function(elem, method, args) {
-             var self = elem.data(this.name),
+         call: function(query, method, args) {
+             var name = this.name,
+                 self = query.data(name),
                  fn = self[method];
 
-             // Methods are called as fn(self, arg ...)
-             args.unshift(self);
-             return fn.apply(null, args);
+             // If this is a property, only act on the first element
+             // in the query.
+             if (fn.__property__) {
+                 return fn.apply(self, args);
+             }
+
+             // This is a normal method.  Call the method on each
+             // element of the query.  This for / return is equivalent
+             // to `return query.each(function() { ... });'
+             for (var idx = 0, lim = query.length; idx < lim; idx++) {
+                 self = $.data(query[idx], name);
+                 self[method].apply(self, args);
+             }
+
+             return this;
          }
+
      });
 
+     // A decorator that declares a particular procedure should be
+     // regarded as a property descriptor rather than a normal method.
+     // See call() above.
+     function property(fn) {
+         fn.__property__ = true;
+         return fn;
+     }
+
      // jQuery integration
+
      $.defclass = defclass;
+
      $.mwidget = function mwidget(name, proto) {
          return (new WidgetType(name, proto || {})).method();
      };
+
+     $.extend($.mwidget, {
+         property: property
+     });
 
 })(jQuery);
