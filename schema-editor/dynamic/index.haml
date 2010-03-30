@@ -1,0 +1,72 @@
+#hd
+  %h1 Avro Schema Editor
+  %p
+    This example uses HTML5 drag and drop to make the property list
+    arrangeable.  It is a simple [[Avro]] record schema editor that
+    allows fields of named types.  If more than one type is given, the
+    type is a union.
+
+  %p    
+    This example also demonstrates how to use the [[ARIA]] role
+    attribute as a basis for generic dispatch.
+
+  %p
+    Tested in: WebKit r56669, FF 3.6
+  
+#bd
+  #wrap
+    %form#record
+      .input.name-input.string
+        %label Name
+        %input{:type => "text", :name => "name"}
+
+      .input.doc-input.text
+        %label Doc
+        %textarea{:name => "doc"}
+
+      .input.fields-input.list
+        %label Fields
+        %ul#fields{:"data-name" => "fields", :role => "list"}
+          %li.field.template
+            .input.type-input.choice
+              %label Type
+              %select{:name => "type", :multiple => "multiple", :role => "maybe-list"}
+                %option null
+                %option boolean
+                %option int
+                %option long
+                %option float
+                %option double
+                %option bytes
+                %option string
+                %option M.key
+            
+            .input.name-input.string
+              %label Name
+              %input{:type => "text", :name => "name"}
+
+            .input.default-input.string
+              %label Default
+              %input{:type => "text", :name => "default"}
+
+            .input.doc-input.string
+              %label Doc
+              %textarea{:name => "doc"}                                
+
+            .clear
+              
+            .buttons
+              %input.remove{:type => "button", :value => "x"}
+
+      .buttons
+        %input#add-field{:type => "button", :value => "+"}
+        %input#show-schema{:type => "button", :value => "&raquo;"}
+
+    #avro
+      .input.schema-input.text
+        %label Schema
+        %textarea{:name => "schema" }
+          { "type": "record", "name": "M.Item", "doc": "An item is a leaf node in a content tree.", "fields": [{ "name": "name", "type": "string", "doc": "The path segment name for this item." }, { "name": "title", "type": "string", "doc": "The display title of this item." }, { "name": "parent", "type": ["M.key", "null"], "doc": "A reference to the parent M.Folder." }] }
+
+      .buttons
+        %input#show-editor{:type => "button", :value => "&laquo;"}

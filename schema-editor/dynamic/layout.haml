@@ -1,0 +1,11 @@
+!!! Strict
+%html
+  %head
+    %title HTML5 Avro Schema Editor
+    %link{:rel=>'stylesheet', :type=>'text/css', :href=>'/css/editor.css'}
+    %script{:type=>'text/javascript', :src=>'/js/jquery-1.4.2.min.js'}
+    %script{:type=>'text/javascript', :src=>'/js/json2.js'}
+    %script{:type=>'text/javascript', :src=>'/js/role.js'}
+    %script{:type=>'text/javascript', :src=>'/js/editor.js'}
+  %body#doc
+    = yield

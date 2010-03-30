@@ -1,0 +1,165 @@
+@import url(reset-fonts-grids.css);
+
+html
+  height: 100%
+  margin-bottom: 0px
+
+html, body
+  font-size: 16px
+  font-family: helvetica, arial, sans-serif
+
+!body_width = 750px    
+
+#doc
+  width = !body_width
+
+h1
+  font-weight: bold
+  font-size: 2em
+  margin-bottom: 0.5em
+
+p
+  margin-bottom: 1em
+
+#hd
+  margin: 1em 0
+
+// Set up #record and #avro to float side-by-side.  #wrap limits the
+// viewport to show one at a time.  Javascript does a slide animation.
+
+#bd
+  overflow: hidden
+  position: relative
+
+#wrap
+  width = !body_width * 2
+
+#record
+  float: left  
+  // Pad on the sides to prevent the input glow from being clipped.  
+  width = !body_width - 10
+  padding: 0 5px
+
+#avro
+  float: left  
+  // Pad to prevent the textarea scrollbar and glow from being
+  // clipped.  
+  width = !body_width - 20
+  padding: 5px 15px 0 5px
+
+// Form Styles    
+
+label
+  display: block
+  font-weight: bold  
+
+.input
+  width: 100%
+  margin-bottom: 1em
+
+  > input, > textarea, > select
+    width: 98.8%
+
+  > input
+    border: 1px solid black
+    padding: 0.2em
+
+  > textarea
+    height: 3em
+    padding: 0.2em
+
+#avro textarea
+  width: 100%
+
+.buttons
+  margin-bottom: 1em
+  
+  > input
+    border: 0.1em solid black
+    background-color: #eee
+    padding: 0.2em 0.5em
+    border-radius: 0.5em
+    -moz-border-radius: 0.5em
+    line-height: 1em
+
+  input:hover
+    background-color: #ddd
+    cursor: pointer
+
+#record
+  .buttons
+    text-align: right      
+
+.field
+  border: 0.1em solid black
+  border-top: 0
+  background-color: #eee
+  padding: 0.6em 1em
+  clear: both
+  position: relative
+  
+  > .input
+    display: block
+    float: left
+    margin-right: 2%
+    width: auto
+    margin-bottom: 0
+
+    > label
+      font-size: 0.8em
+
+  > .name-input, > .default-input
+    width: 37.8%
+
+  > .doc-input
+    margin-top: 0.2em
+    width: 78%
+    
+    > textarea
+      font-size: 0.8em
+      height: 2em
+
+  > .type-input
+    > select
+      font-size: 0.8em
+      height: 5.9em
+
+  > .clear
+    clear: both
+
+  > .buttons
+    position: absolute
+    top: 40%
+    right: 0.5em
+    vertical-align: middle
+
+    > .remove
+      background-color: firebrick
+      color: white
+      border-color: firebrick
+
+    > .remove:hover
+      background-color: red
+
+.field:hover
+  background-color: #ddd
+  cursor: move
+
+.field:first-child
+  border-top: 0.1em solid black
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  -moz-border-radius-topleft: 5px
+  -moz-border-radius-topright: 5px
+  
+.field:last-child
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  -moz-border-radius-bottomleft: 5px
+  -moz-border-radius-bottomright: 5px  
+      
+.over
+  background-color: yellow
+
+.drag
+  border: 0.1em solid black
