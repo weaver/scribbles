@@ -36,7 +36,7 @@
     };
 
     // Add a ":named" pseudo-selector that works like
-    $.expr[':'].named = function(elem) {
+    $.expr.filters.named = function(elem) {
         return !!(elem.getAttribute('name')
                   || elem.getAttribute('data-name'));
     };

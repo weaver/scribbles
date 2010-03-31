@@ -73,7 +73,7 @@
     function click_field(ev) {
         var target = $(ev.target);
         if (target.is('.remove')) {
-            remove_field(target.parents('.field'));
+            remove_field(target.up('.field'));
         }
     }
 
