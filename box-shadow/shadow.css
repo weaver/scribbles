@@ -5,7 +5,9 @@ body {
     font-size: 13px;
 }
 
-#shadowed {    
+#shadowed {
+    display: block;
+    
     /* Position the box in the center of the screen. */
     position: absolute;
     top: 50%;
@@ -23,7 +25,7 @@ body {
     color: #fff;
     font-weight: bold;
     text-shadow: #777 1px 1px 1px;
-    cursor: default;
+    text-decoration: none;
 
     /* An initial shadow.  This is overridden by javascript once the mouse
        moves. */    
