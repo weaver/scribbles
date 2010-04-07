@@ -46,13 +46,15 @@
             top = box.offset().top + Math.floor(box.height() / 2),
             left = box.offset().left + Math.floor(box.width() / 2);
 
-        $(document).mousemove(function(ev) {
+        function draw(ev) {
             var sh = project(bz, left, ev.pageX, vr),
                 sv = project(bz, top, ev.pageY, vr),
                 sb = blur(bz, distance(left, top, ev.pageX, ev.pageY), vr);
 
-            box.css(name, '#888 ' + sh + 'px ' + sv + 'px ' + sb + 'px 0');
-        });
+            box.css(name, '#888 ' + sh + 'px ' + sv + 'px ' + sb + 'px');
+        }
+
+        $(document).mousemove(draw).click(draw);
     }
 
     function radius(a, b) {

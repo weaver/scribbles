@@ -18,7 +18,7 @@ body {
 
     /* The z-index is the "height" of the box.  A bigger z-index makes the
        shadow more dramatic. */    
-    z-index: 10;
+    z-index: 15;
 
     /* Text styles */
     text-align: center;
@@ -29,13 +29,14 @@ body {
 
     /* An initial shadow.  This is overridden by javascript once the mouse
        moves. */    
-    -webkit-box-shadow: #888 5px 5px 5px 0;
+    -webkit-box-shadow: #888 5px 5px 5px;
     -moz-box-shadow: #888 5px 5px 5px 0;
     box-shadow: #888 5px 5px 5px 0;
 
     /* Box appearance */
-    border-radius: 5px;
-    -moz-border-radius: 5px;           
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;    
     background-color: #ccc;    
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0.05, #ddd), color-stop(0.58, #ccc), color-stop(1, #bbb));    
     background: -moz-linear-gradient(center bottom, #ddd 5%, #ccc 58%, #bbb 100%);    
