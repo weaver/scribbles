@@ -1,0 +1,40 @@
+body {
+    height: 100%;
+    margin: 0;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 13px;
+}
+
+#shadowed {    
+    /* Position the box in the center of the screen. */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    padding: 10px;
+    margin: -17px 0 0 -100px;
+
+    /* The z-index is the "height" of the box.  A bigger z-index makes the
+       shadow more dramatic. */    
+    z-index: 10;
+
+    /* Text styles */
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: #777 1px 1px 1px;
+    cursor: default;
+
+    /* An initial shadow.  This is overridden by javascript once the mouse
+       moves. */    
+    -webkit-box-shadow: #888 5px 5px 5px 0;
+    -moz-box-shadow: #888 5px 5px 5px 0;
+    box-shadow: #888 5px 5px 5px 0;
+
+    /* Box appearance */
+    border-radius: 5px;
+    -moz-border-radius: 5px;           
+    background-color: #ccc;    
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0.05, #ddd), color-stop(0.58, #ccc), color-stop(1, #bbb));    
+    background: -moz-linear-gradient(center bottom, #ddd 5%, #ccc 58%, #bbb 100%);    
+}
