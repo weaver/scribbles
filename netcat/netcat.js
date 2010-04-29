@@ -1,6 +1,6 @@
-// telnet.js -- a simple telnet client
+// netcat.js -- a simple telnet client
 //
-// > node telnet.js irc.freenode.net 6667
+// > node netcat.js irc.freenode.net 6667
 
 var net = require('net'),
     sys = require('sys'),
