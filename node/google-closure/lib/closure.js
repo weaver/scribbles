@@ -1,7 +1,31 @@
+/// # Google Closure Compiler Service #
+///
+/// Compress javascript with Node.js using the Closure Compiler
+/// Service.
+
 var sys = require('sys');
 
 exports.compile = compile;
 
+// Use the Google Closure Compiler Service to compress Javascript
+// code.
+//
+// + code - String of javascript to compress
+// + next - Function callback that accepts.
+//
+// This method will POST the `code` to the compiler service.  If an
+// error occurs, `next()` will be called with an `Error` object as the
+// first argument.  Otherwise, the `next()` will be called with `null`
+// as the first argument and a String of compressed javascript as the
+// second argument.
+//
+//     compile('... javascript ...', function(err, result) {
+//       if (err) throw err;
+//
+//       ... do something with result ...
+//     });
+//
+// Returns nothing.
 function compile(code, next) {
   try {
     var qs = require('querystring'),
@@ -45,6 +69,13 @@ function compile(code, next) {
   }
 }
 
+// Convert a Stream to a String.
+//
+// + input    - Stream object
+// + encoding - String input encoding
+// + next     - Function error/success callback
+//
+// Returns nothing.
 function capture(input, encoding, next) {
   var buffer = '';
 
@@ -59,6 +90,12 @@ function capture(input, encoding, next) {
   input.on('error', next);
 }
 
+// Convert JSON.load() to callback-style.
+//
+// + data - String value to load
+// + next - Function error/success callback
+//
+// Returns nothing.
 function loadJSON(data, next) {
   var err, obj;
 
